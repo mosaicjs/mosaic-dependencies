@@ -11,6 +11,7 @@ dependencies as well as all dependent keys.
 This module also declares two utility methods:
  * callDependencies
  * callDependents
+
 These method take a dependency object and an element key as parameters and
 calls a specified listener for all dependencies or dependent elements taking 
 into account their declaration order.  
