@@ -414,8 +414,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      * @param dependencies
 	      *            a Dependencies object
 	      * @param key
-	      *            the key of the action to launch; if this parameter is an array
-	      *            then all keys from this array will be executed
+	      *            the key of the action to launch
 	      * @param listener
 	      *            a listener object containing two methods: "begin" and "end"
 	      * @param listener.begin
@@ -433,7 +432,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	            listener = arguments[1];
 	            dependencies = this;
 	        }
-	        return callDeps(this, dependencies._inverse, key, listener);
+	        var list = dependencies.getAllDependents(key);
+	        var index = {};
+	        list.forEach(function (key) {
+	            index[key] = true;
+	        });
+	        return callDeps(this, dependencies._direct, Object.keys(index), listener);
 	    } };
 	module.exports = exports['default'];
 

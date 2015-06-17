@@ -41,8 +41,8 @@ describe('Dependencies', function() {
         }).then(function(result){
             // console.log(JSON.stringify(result, null, 2));
             expect(result).to.eql([
-           {
-               "key": "D",
+             {
+               "key": "A",
                "idx": 3,
                "res": [
                  {
@@ -50,7 +50,7 @@ describe('Dependencies', function() {
                    "idx": 1,
                    "res": [
                      {
-                       "key": "A",
+                       "key": "D",
                        "idx": 0
                      }
                    ]
@@ -60,13 +60,34 @@ describe('Dependencies', function() {
                    "idx": 2,
                    "res": [
                      {
-                       "key": "A",
+                       "key": "D",
                        "idx": 0
                      }
                    ]
                  }
                ]
+             },
+             {
+               "key": "B",
+               "idx": 1,
+               "res": [
+                 {
+                   "key": "D",
+                   "idx": 0
+                 }
+               ]
+             },
+             {
+               "key": "C",
+               "idx": 2,
+               "res": [
+                 {
+                   "key": "D",
+                   "idx": 0
+                 }
+               ]
              }
+
            ]);
         }).then(done, done);
     });
