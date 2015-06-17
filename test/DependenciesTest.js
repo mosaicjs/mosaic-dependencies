@@ -1,5 +1,5 @@
 import expect from 'expect.js';
-import { Dependencies, callDependencies, callDependants } from '../';
+import { Dependencies, callDependencies, callDependents } from '../';
 
 describe('Dependencies', function() {
     it('shoud be able to define all dependencies for an element', function(){
@@ -12,23 +12,23 @@ describe('Dependencies', function() {
         expect(deps.getDependencies('C')).to.eql(['D']);
         expect(deps.getDependencies('D')).to.eql([]);
     });
-    it('shoud be able to define dependant modules for an element', function(){
+    it('shoud be able to define dependent modules for an element', function(){
         let deps = new Dependencies();
         deps.setDependency('A', ['B', 'C']);
         deps.setDependency('B', ['D']);
         deps.setDependency('C', ['D']);
-        expect(deps.getDependants('A')).to.eql([]);
-        expect(deps.getDependants('B')).to.eql(['A']);
-        expect(deps.getDependants('C')).to.eql(['A']);
-        expect(deps.getDependants('D')).to.eql(['B','C']);
+        expect(deps.getDependents('A')).to.eql([]);
+        expect(deps.getDependents('B')).to.eql(['A']);
+        expect(deps.getDependents('C')).to.eql(['A']);
+        expect(deps.getDependents('D')).to.eql(['B','C']);
     });
-    it('shoud be able to call all dependant elements in a good order', function(done){
+    it('shoud be able to call all dependent elements in a good order', function(done){
         let deps = new Dependencies();
         deps.setDependency('A', ['B', 'C']);
         deps.setDependency('B', ['D']);
         deps.setDependency('C', ['D']);
         var idx = 0;
-        callDependants(deps, 'D', {
+        callDependents(deps, 'D', {
             end : function(params){
                 var result = { key: params.key, idx: idx++ };
                 if (params.result) {

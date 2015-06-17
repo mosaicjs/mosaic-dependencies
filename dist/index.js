@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports['default'] = {
 	    Dependencies: _libDependencies2['default'],
 	    callDependencies: _libDependenciesCaller.callDependencies,
-	    callDependants: _libDependenciesCaller.callDependants
+	    callDependents: _libDependenciesCaller.callDependents
 	};
 	module.exports = exports['default'];
 
@@ -147,7 +147,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this._visit(this._direct, key, listener);
 	        }
 	    }, {
-	        key: 'visitDependant',
+	        key: 'visitDependent',
 
 	        /**
 	         * Visits all elements depending on the specified one.
@@ -155,7 +155,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * @param key
 	         *            the key of an entry to visit
 	         */
-	        value: function visitDependant(key, listener) {
+	        value: function visitDependent(key, listener) {
 	            return this._visit(this._inverse, key, listener);
 	        }
 	    }, {
@@ -193,22 +193,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return this._direct[key] || [];
 	        }
 	    }, {
-	        key: 'getDependants',
+	        key: 'getDependents',
 
 	        /**
 	         * Returns key of all elements depending on the specified one.
 	         */
-	        value: function getDependants(key) {
+	        value: function getDependents(key) {
 	            if (!this._inverse) return [];
 	            return this._inverse[key] || [];
 	        }
 	    }, {
-	        key: 'getAllDependants',
+	        key: 'getAllDependents',
 
 	        /**
 	         * Returns key of all elements depending on the specified one.
 	         */
-	        value: function getAllDependants(key) {
+	        value: function getAllDependents(key) {
 	            return this._collect(this._inverse, key);
 	        }
 	    }, {
@@ -427,7 +427,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      *            context is completed with the "result" or "error" fields
 	      *            containing execution results for child actions
 	      */
-	    callDependants: function callDependants(dependencies, key, listener) {
+	    callDependents: function callDependents(dependencies, key, listener) {
 	        if (arguments.length < 3) {
 	            key = arguments[0];
 	            listener = arguments[1];
