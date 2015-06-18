@@ -42,6 +42,10 @@ describe('Dependencies', function() {
             // console.log(JSON.stringify(result, null, 2));
             expect(result).to.eql([
              {
+               "key": "D",
+               "idx": 0
+             },
+             {
                "key": "A",
                "idx": 3,
                "res": [

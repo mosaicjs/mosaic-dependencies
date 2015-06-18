@@ -434,8 +434,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	        var list = dependencies.getAllDependents(key);
 	        var index = {};
-	        list.forEach(function (key) {
-	            index[key] = true;
+	        index[key] = true;
+	        list.forEach(function (k) {
+	            index[k] = true;
 	        });
 	        return callDeps(this, dependencies._direct, Object.keys(index), listener);
 	    } };
