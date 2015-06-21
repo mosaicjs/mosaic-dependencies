@@ -42,7 +42,35 @@ describe('Dependencies', function() {
                    "idx": 0
                 }
             ]);
-        }).then(done, done);
+        }).then(function(){
+            idx = 0;
+            return callDependents(deps, ['X', 'Y', 'Z'], {
+                end : function(params){
+                    var result = { key: params.key, idx: idx++ };
+                    if (params.result) {
+                        result.res = params.result;
+                    } else if (params.error) {
+                        result.error = params.error;
+                    }
+                    return result; 
+                }
+            });
+        }).then(function(result){
+            expect(result).to.eql([
+               {
+                   "key": "X",
+                   "idx": 0
+                },
+               {
+                   "key": "Y",
+                   "idx": 1
+                },
+               {
+                   "key": "Z",
+                   "idx": 2
+                }
+           ]);
+       }).then(done, done);
     });
     it('shoud be able to call all dependent elements in a good order', function(done){
         let deps = new Dependencies();

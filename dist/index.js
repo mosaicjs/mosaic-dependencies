@@ -432,11 +432,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            listener = arguments[1];
 	            dependencies = this;
 	        }
-	        var list = dependencies.getAllDependents(key);
 	        var index = {};
-	        index[key] = true;
-	        list.forEach(function (k) {
+	        key = Array.isArray(key) ? key : [key];
+	        key.forEach(function (k) {
+	            var list = dependencies.getAllDependents(k);
 	            index[k] = true;
+	            list.forEach(function (d) {
+	                index[d] = true;
+	            });
 	        });
 	        return callDeps(this, dependencies._direct, Object.keys(index), listener);
 	    } };
