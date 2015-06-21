@@ -366,7 +366,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	                params.result = result;
 	                if (listener.end) return listener.end(params);else return result;
 	            }, function (err) {
-	                console.log('I am here', err);
 	                params.error = err;
 	                if (listener.end) return listener.end(params);else throw err;
 	            });
