@@ -22,6 +22,28 @@ describe('Dependencies', function() {
         expect(deps.getDependents('C')).to.eql(['A']);
         expect(deps.getDependents('D')).to.eql(['B','C']);
     });
+    it('shoud call only the required element if there is no dependent elements', function(done){
+        let deps = new Dependencies();
+        var idx = 0;
+        callDependents(deps, 'X', {
+            end : function(params){
+                var result = { key: params.key, idx: idx++ };
+                if (params.result) {
+                    result.res = params.result;
+                } else if (params.error) {
+                    result.error = params.error;
+                }
+                return result; 
+            }
+        }).then(function(result){
+            expect(result).to.eql([
+                {
+                   "key": "X",
+                   "idx": 0
+                }
+            ]);
+        }).then(done, done);
+    });
     it('shoud be able to call all dependent elements in a good order', function(done){
         let deps = new Dependencies();
         deps.setDependency('A', ['B', 'C']);

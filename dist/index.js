@@ -359,13 +359,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            promises[k] = _promise2['default'].resolve().then(function () {
 	                if (listener.begin) return listener.begin(params);
 	            }).then(function () {
-	                var deps = index[k];
+	                var deps = index ? index[k] : [];
 	                if (!deps || !deps.length) return;
 	                return _promise2['default'].all(deps.map(visit.bind(context, k)));
 	            }).then(function (result) {
 	                params.result = result;
 	                if (listener.end) return listener.end(params);else return result;
 	            }, function (err) {
+	                console.log('I am here', err);
 	                params.error = err;
 	                if (listener.end) return listener.end(params);else throw err;
 	            });
