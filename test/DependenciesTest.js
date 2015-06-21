@@ -12,6 +12,18 @@ describe('Dependencies', function() {
         expect(deps.getDependencies('C')).to.eql(['D']);
         expect(deps.getDependencies('D')).to.eql([]);
     });
+    it('shoud be able to define all dependencies for an element using one method', function(){
+        let deps = new Dependencies();
+        deps.setDependencies({
+            'A': ['B', 'C'],
+            'B': ['D'],
+            'C': ['D']
+        });
+        expect(deps.getDependencies('A')).to.eql(['B', 'C']);
+        expect(deps.getDependencies('B')).to.eql(['D']);
+        expect(deps.getDependencies('C')).to.eql(['D']);
+        expect(deps.getDependencies('D')).to.eql([]);
+    });
     it('shoud be able to define dependent modules for an element', function(){
         let deps = new Dependencies();
         deps.setDependency('A', ['B', 'C']);

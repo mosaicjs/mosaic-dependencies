@@ -110,9 +110,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	         *            dependencies
 	         */
 	        value: function setDependencies(dependencies) {
-	            dependencies.forEach(function (deps, module) {
-	                this.setDependency(module, deps);
-	            }, this);
+	            if (!dependencies) return;
+	            for (var _module2 in dependencies) {
+	                var deps = dependencies[_module2];
+	                this.setDependency(_module2, deps);
+	            }
 	        }
 	    }, {
 	        key: 'setDependency',
