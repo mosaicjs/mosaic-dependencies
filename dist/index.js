@@ -314,7 +314,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                try {
 	                    index[k] = true;
 	                    var list = provider(k) || [];
-	                    return !!list.find(isIndexed);
+	                    for (var i = 0, len = list.length; i < len; i++) {
+	                        if (isIndexed(list[i])) return true;
+	                    }
+	                    return false;
 	                } finally {
 	                    delete index[k];
 	                }
